@@ -1,0 +1,25 @@
+.name-tag {
+    display: inline-block;
+    margin: 3px;
+    padding: 3px 5px 3px 5px;
+    text-align: center;
+}
+
+#winner {
+    margin-top: -10px;
+    margin-bottom: -10px;
+}
+
+body.dark-mode {
+    background-color: #121212;
+    color: #ffffff;
+}
+
+body.dark-mode .btn {
+    border: 1px solid #ffffff;
+}
+
+body.dark-mode #darkModeButton {
+    background-color: #ffffff;
+    color: #000000;
+}
