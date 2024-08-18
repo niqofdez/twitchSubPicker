@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FACEIT Leaderboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f4;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background-color: #fff;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <h1>FACEIT Leaderboard</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Rank</th>
+                <th>Entity Name</th>
+                <th>Points</th>
+            </tr>
+        </thead>
+        <tbody id="leaderboard">
+            <!-- Los datos se insertarán aquí -->
+        </tbody>
+    </table>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            fetch('https://corsproxy.io/?https://api.faceit.com/leaderboard/v1/ranking/hub/634cff48-f1dd-4394-905c-9a1a62254324?leaderboardId=6695623aece5c75ed609fa0b&limit=5&offset=0')
+                .then(response => response.json())
+                .then(data => {
+                    const leaderboard = data.items;
+                    const tableBody = document.getElementById('leaderboard');
+
+                    leaderboard.slice(0, 3).forEach(item => {
+                        const row = document.createElement('tr');
+                        row.innerHTML = `
+                            <td>${item.end_rank}</td>
+                            <td>${item.entity_name}</td>
+                            <td>${item.points}</td>
+                        `;
+                        tableBody.appendChild(row);
+                    });
+                })
+                .catch(error => console.error('Error fetching data:', error));
+        });
+    </script>
+</body>
+</html>
