@@ -23,7 +23,6 @@ document.querySelector("#sendButton").addEventListener("click", () => {
     var pastebinUrl = "https://imicaelax.com.ar/api/get-donaciones.php?url=https://pastebin.com/raw/8dF9vtu5";
 
     hideWinner();
-    hideComment();
 
     document.getElementById("loadingNameList").style.display = "block";
 
@@ -81,7 +80,6 @@ document.querySelector("#sendButton").addEventListener("click", () => {
 
 // Choose a winner
 function chooseWinner(playAudio) {
-    hideComment();
 
     if (nameList.length === 0) {
         alert("¡Cargue el listado de donantes primero!");
@@ -123,11 +121,6 @@ function chooseWinner(playAudio) {
             console.log(`previousWinners = ${previousWinners}`);
         }
     }
-}
-
-function hideComment() {
-    document.querySelector("#winnerCommentLabel").style.display = "none";
-    document.querySelector("#winnerComment").textContent = "";
 }
 
 function hideWinner() {
