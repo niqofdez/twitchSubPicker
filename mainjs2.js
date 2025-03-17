@@ -33,7 +33,7 @@ document.querySelector("#sendButton").addEventListener("click", () => {
 
                 const rows = JSON.parse(data);
 
-                const filteredUsers = rows.filter(user => user.amount > 2000);
+                const filteredUsers = rows.filter(user => user.amount >= 2000);
 
                 const usersGroupedByName = filteredUsers.reduce((acc, user) => {
                     if (!acc[user.name]) {
