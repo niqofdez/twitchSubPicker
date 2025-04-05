@@ -20,7 +20,7 @@ winnerButton.addEventListener('click', () => {
 // Function to fetch paste data from the URL
 document.querySelector("#sendButton").addEventListener("click", () => {
 
-    var pastebinUrl = "https://imicaelax.com.ar/api/get-donaciones.php?url=https://pastebin.com/raw/8dF9vtu5";
+    var pastebinUrl = "https://imicaelax.com.ar/api/get-donaciones.php?url=https://pastebin.com/raw/CK785rPH";
 
     hideWinner();
 
@@ -33,7 +33,7 @@ document.querySelector("#sendButton").addEventListener("click", () => {
 
                 const rows = JSON.parse(data);
 
-                const filteredUsers = rows.filter(user => user.amount >= 2000);
+                const filteredUsers = rows.filter(user => user.amount >= 1000);
 
                 const usersGroupedByName = filteredUsers.reduce((acc, user) => {
                     if (!acc[user.name]) {
