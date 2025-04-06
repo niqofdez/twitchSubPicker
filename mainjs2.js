@@ -33,7 +33,7 @@ document.querySelector("#sendButton").addEventListener("click", () => {
 
                 const rows = JSON.parse(data);
 
-                const filteredUsers = rows.filter(user => user.amount >= 1000);
+                const filteredUsers = rows.filter(user => user.amount >= 1000 || user.currency === 'USD');
 
                 const usersGroupedByName = filteredUsers.reduce((acc, user) => {
                     if (!acc[user.name]) {
