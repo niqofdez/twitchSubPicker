@@ -33,20 +33,26 @@ document.querySelector("#sendButton").addEventListener("click", () => {
 
                 const rows = JSON.parse(data);
 
-                const filteredUsers = rows.filter(user => user.amount >= 1000 || user.currency === 'USD');
-
-                const usersGroupedByName = filteredUsers.reduce((acc, user) => {
+                const usersGroupedByName = rows.reduce((acc, user) => {
                     if (!acc[user.name]) {
                         acc[user.name] = 0;
                     }
                     acc[user.name] += user.amount;
                     return acc;
                 }, {});
+                
+                const filteredGroupedUsers = Object.entries(usersGroupedByName)
+                    .filter(([name, amount]) => amount >= 1000)
+                    .reduce((acc, [name, amount]) => {
+                        acc[name] = amount;
+                        return acc;
+                    }, {});
 
-                usersArray = Object.keys(usersGroupedByName).map(name => ({
-                    name: name,
-                    amount: usersGroupedByName[name]
-                }));
+               usersArray = Object.keys(filteredGroupedUsers).map(name => ({
+                name: name,
+                amount: filteredGroupedUsers[name]
+            }));
+
 
                 nameList = usersArray.map(user => user.name);
                 const uniqueNameList = [...new Set(nameList)];
@@ -97,6 +103,11 @@ function chooseWinner(playAudio) {
             audio.play();
         }
 
+        document.querySelectorAll("#nameList .name-tag").forEach(tag => {
+            tag.classList.remove("winner-tag");
+            tag.classList.add("bg-primary");
+        });
+        
         const myInterval = setInterval(myWinnerDisplay, intervalTime);
 
         function myWinnerDisplay() {
@@ -119,6 +130,15 @@ function chooseWinner(playAudio) {
 
             previousWinners.push(winner);
             console.log(`previousWinners = ${previousWinners}`);
+
+            const nameTags = document.querySelectorAll("#nameList .name-tag");
+            nameTags.forEach(tag => {
+                if (tag.innerText.includes(name)) {
+                    tag.classList.remove("bg-primary");
+                    tag.classList.add("winner-tag");
+                }
+            });
+
         }
     }
 }
