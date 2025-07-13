@@ -23,3 +23,10 @@ body.dark-mode #darkModeButton {
     background-color: #ffffff;
     color: #000000;
 }
+
+.winner-tag {
+    background-color: gold !important;
+    color: black !important;
+    font-weight: bold;
+}
+
