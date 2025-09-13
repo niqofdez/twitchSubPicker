@@ -42,7 +42,7 @@ document.querySelector("#sendButton").addEventListener("click", () => {
                 }, {});
                 
                 const filteredGroupedUsers = Object.entries(usersGroupedByName)
-                    .filter(([name, amount]) => amount >= 1000)
+                    .filter(([name, amount]) => amount >= 5000)
                     .reduce((acc, [name, amount]) => {
                         acc[name] = amount;
                         return acc;
@@ -146,3 +146,4 @@ function chooseWinner(playAudio) {
 function hideWinner() {
     document.querySelector("#winner").textContent = "";
 }
+
