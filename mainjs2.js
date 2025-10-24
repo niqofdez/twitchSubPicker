@@ -33,11 +33,18 @@ document.querySelector("#sendButton").addEventListener("click", () => {
 
                 const rows = JSON.parse(data);
 
+                const USD_TO_ARS = 1400;
+
                 const usersGroupedByName = rows.reduce((acc, user) => {
-                    if (!acc[user.name]) {
-                        acc[user.name] = 0;
+                    const name = user.name?.trim() || "Desconocido";
+                    let amount = parseFloat(user.amount) || 0;
+                    
+                    if (user.currency && user.currency.toUpperCase() === "USD") {
+                        amount = amount * USD_TO_ARS;
                     }
-                    acc[user.name] += user.amount;
+                
+                    if (!acc[name]) acc[name] = 0;
+                    acc[name] += amount;
                     return acc;
                 }, {});
                 
@@ -146,4 +153,5 @@ function chooseWinner(playAudio) {
 function hideWinner() {
     document.querySelector("#winner").textContent = "";
 }
+
 
