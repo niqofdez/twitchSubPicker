@@ -49,7 +49,7 @@ document.querySelector("#sendButton").addEventListener("click", () => {
                 }, {});
                 
                 const filteredGroupedUsers = Object.entries(usersGroupedByName)
-                    .filter(([name, amount]) => amount >= 10000)
+                    .filter(([name, amount]) => amount >= 30000)
                     .reduce((acc, [name, amount]) => {
                         acc[name] = amount;
                         return acc;
